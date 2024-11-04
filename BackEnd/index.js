@@ -1,33 +1,26 @@
 const express = require('express');
-const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
-const cors = require('cors');
-const morgan = require('morgan');
+const applyHelmet = require('./Middleware/helmet');
+const applyCors = require('./Middleware/cors');
+const applyMorgan = require('./Middleware/morgan');
+const applyRateLimit = require('./Middleware/rateLimit');
 
 const app = express();
 const PORT = 5000;
 
-// Middleware
-app.use(helmet()); // Security headers
-app.use(cors()); // Allow frontend access
-app.use(morgan('dev')); // HTTP request logging
+// Apply Middleware
+applyHelmet(app);
+applyCors(app);
+applyMorgan(app);
+applyRateLimit(app);
 
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
-});
-app.use(limiter);
-
-// Test route
+// Sample Route
 app.get('/', (req, res) => {
-  res.send('WAF Backend is running');
+  res.send('Hello, your WAF backend with separated middleware is working!');
+  console.log('Request received at /');
 });
 
 
-
-
-
+// Start the Server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

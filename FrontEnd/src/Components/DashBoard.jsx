@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import RequestLogs from './RequestLogs';
+import ThreatStatistics from './ThreatStatistics';
+import SettingsPanel from './SettingsPanel';
+import BlockedIPs from './BlockedIPs';
 
 
 
@@ -22,10 +26,18 @@ const DashBoard = () => {
           {events.map((event, index) => (
             <li key={index} className="border-b py-2">
               {event.message}
-            </li>
+            </li>           
           ))}
         </ul>
       </div>
+
+      <RequestLogs/>
+
+      <BlockedIPs/>
+
+      <SettingsPanel/>
+
+      <ThreatStatistics/>
       {/* Additional components for stats and manual controls can be added here */}
     </div>
   )
