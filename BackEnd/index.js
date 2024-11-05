@@ -1,6 +1,5 @@
-// Load environment variables
 const dotenv = require('dotenv');
-dotenv.config(); // Make sure this is at the very top
+dotenv.config(); 
 
 const express = require('express');
 const cors = require('cors');
@@ -9,22 +8,27 @@ const securityMiddleware = require('./src/middleware/security');
 const logsRouter = require('./src/routes/logs');
 const statsRouter = require('./src/routes/stats');
 const settingsRouter = require('./src/routes/settings');
-const connectDB = require('./src/config/db'); // Import after dotenv.config()
+const connectDB = require('./src/config/db'); 
 
 // Connect to MongoDB
-connectDB(); // Call the database connection function after dotenv.config()
+connectDB(); 
 
 const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
+app.use(express.static("public"));
+
 
 // Middleware
-app.use(cors()); // Enable CORS
-app.use(express.json()); // Parse JSON bodies
-loggerMiddleware(app); // Apply logging middleware
-securityMiddleware(app); // Apply security middleware
+app.use(cors()); 
+app.use(express.json()); 
+loggerMiddleware(app);
+securityMiddleware(app); 
 
 // Routes
+app.get("/", (req, res) => {
+  res.send("Welcome to the Web Application Firewall API!");
+});
 app.use('/api/logs', logsRouter);
 app.use('/api/stats', statsRouter);
 app.use('/api/settings', settingsRouter);

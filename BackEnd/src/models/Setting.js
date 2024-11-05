@@ -1,14 +1,13 @@
-// src/models/Setting.js
 const mongoose = require("mongoose");
 
 const settingSchema = new mongoose.Schema({
   rateLimit: {
     type: Number,
-    default: 100, // Default requests per window
+    default: 100, 
   },
   rateWindow: {
     type: Number,
-    default: 15 * 60 * 1000, // Default to 15 minutes in milliseconds
+    default: 15 * 60 * 1000, 
   },
   createdAt: {
     type: Date,

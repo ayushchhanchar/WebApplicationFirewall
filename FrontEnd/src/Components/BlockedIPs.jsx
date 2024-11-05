@@ -17,7 +17,7 @@ function BlockedIPs() {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
+    <div className="bg-[#27374D] shadow-md rounded-lg p-6 mt-10">
       <h2 className="text-xl font-semibold mb-4">Blocked IPs</h2>
       <ul className="space-y-2">
         {blockedIPs.map((ip, index) => (

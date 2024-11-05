@@ -4,7 +4,9 @@ import DashBoard from './Components/DashBoard'
 const App = () => {
   return (
     <>
-    <DashBoard/>
+      <div className='h-full w-full bg-[#172335]'>
+        <DashBoard/>
+      </div>
     </>
   )
 }

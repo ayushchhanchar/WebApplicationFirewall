@@ -15,15 +15,15 @@ function SettingsPanel() {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">Settings</h2>
+    <div className="bg-[#27374D] shadow-md rounded-lg p-6 mt-10">
+      <h2 className="text-xl text-white font-semibold mb-4">Settings</h2>
       <label className="block mb-2">
-        <span className="text-gray-700">Rate Limit:</span>
+        <span className="text-gray-400">Rate Limit:</span>
         <input
           type="number"
           value={rateLimit}
           onChange={handleRateLimitChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200"
+          className="mt-1 block px-2 py-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200"
         />
       </label>
       <button

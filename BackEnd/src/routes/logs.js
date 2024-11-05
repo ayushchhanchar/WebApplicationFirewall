@@ -1,4 +1,3 @@
-// src/routes/logs.js
 const express = require("express");
 const router = express.Router();
 const Log = require("../models/Log");

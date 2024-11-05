@@ -1,4 +1,3 @@
-// src/models/Stat.js
 const mongoose = require("mongoose");
 
 const statSchema = new mongoose.Schema({
