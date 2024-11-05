@@ -15,11 +15,11 @@ function ThreatStatistics() {
   }, []);
 
   return (
-    <div className="threat-statistics">
-      <h2>Threat Statistics</h2>
-      <p><strong>Total Requests:</strong> {stats.totalRequests}</p>
-      <p><strong>Blocked Requests:</strong> {stats.blockedRequests}</p>
-      <p><strong>Suspicious Activities:</strong> {stats.suspiciousActivities}</p>
+    <div className="bg-white shadow-md rounded-lg p-6">
+      <h2 className="text-xl font-semibold mb-4">Threat Statistics</h2>
+      <p className="text-gray-700"><strong>Total Requests:</strong> {stats.totalRequests}</p>
+      <p className="text-gray-700"><strong>Blocked Requests:</strong> {stats.blockedRequests}</p>
+      <p className="text-gray-700"><strong>Suspicious Activities:</strong> {stats.suspiciousActivities}</p>
     </div>
   );
 }

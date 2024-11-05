@@ -1,26 +1,26 @@
 const express = require('express');
-const applyHelmet = require('./Middleware/helmet');
-const applyCors = require('./Middleware/cors');
-const applyMorgan = require('./Middleware/morgan');
-const applyRateLimit = require('./Middleware/rateLimit');
+const cors = require('cors');
+const loggerMiddleware = require('./src/middleware/logger');
+const securityMiddleware = require('./src/middleware/security');
+const logsRouter = require('./src/routes/logs');
+const statsRouter = require('./src/routes/stats');
+const settingsRouter = require('./src/routes/settings');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
-// Apply Middleware
-applyHelmet(app);
-applyCors(app);
-applyMorgan(app);
-applyRateLimit(app);
+// Middleware
+app.use(cors()); // Enable CORS
+app.use(express.json()); // Parse JSON bodies
+loggerMiddleware(app); // Apply logging middleware
+securityMiddleware(app); // Apply security middleware
 
-// Sample Route
-app.get('/', (req, res) => {
-  res.send('Hello, your WAF backend with separated middleware is working!');
-  console.log('Request received at /');
-});
+// Routes
+app.use('/api/logs', logsRouter);
+app.use('/api/stats', statsRouter);
+app.use('/api/settings', settingsRouter);
 
-
-// Start the Server
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

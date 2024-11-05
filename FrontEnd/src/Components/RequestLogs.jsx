@@ -11,14 +11,14 @@ function RequestLogs() {
   }, []);
 
   return (
-    <div className="request-logs">
-      <h2>Request Logs</h2>
-      <ul>
+    <div className="bg-white shadow-md rounded-lg p-6">
+      <h2 className="text-xl font-semibold mb-4">Request Logs</h2>
+      <ul className="space-y-4">
         {logs.map((log, index) => (
-          <li key={index}>
-            <p><strong>IP:</strong> {log.ip}</p>
-            <p><strong>Path:</strong> {log.path}</p>
-            <p><strong>Status:</strong> {log.status}</p>
+          <li key={index} className="border-b border-gray-300 pb-2">
+            <p className="text-gray-700"><strong>IP:</strong> {log.ip}</p>
+            <p className="text-gray-700"><strong>Path:</strong> {log.path}</p>
+            <p className="text-gray-700"><strong>Status:</strong> {log.status}</p>
           </li>
         ))}
       </ul>
