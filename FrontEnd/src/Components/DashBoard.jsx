@@ -20,16 +20,7 @@ const DashBoard = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Web Application Firewall Dashboard</h1>
-      <div className="bg-white shadow-md rounded-lg p-6 mb-4">
-        <h2 className="text-xl font-semibold">Recent Events</h2>
-        <ul>
-          {events.map((event, index) => (
-            <li key={index} className="border-b py-2">
-              {event.message}
-            </li>           
-          ))}
-        </ul>
-      </div>
+      
 
       <RequestLogs/>
 

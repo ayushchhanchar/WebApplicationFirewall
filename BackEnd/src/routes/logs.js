@@ -1,15 +1,35 @@
-const express = require('express');
+// src/routes/logs.js
+const express = require("express");
 const router = express.Router();
+const Log = require("../models/Log");
 
-// Sample logs (replace this with your database logic)
-const logs = [
-  { ip: '192.168.1.1', path: '/api/test', status: 200 },
-  { ip: '192.168.1.2', path: '/api/test', status: 403 }
-];
+// Route to get all logs
+router.get("/", async (req, res) => {
+  try {
+    const logs = await Log.find().sort({ timestamp: -1 });
+    res.json(logs);
+  } catch (error) {
+    console.error("Error fetching logs:", error);
+    res.status(500).json({ message: "Error fetching logs" });
+  }
+});
 
-// GET logs
-router.get('/', (req, res) => {
-  res.json(logs);
+// Route to add a new log
+router.post("/", async (req, res) => {
+  try {
+    const { ipAddress, requestUrl, httpMethod, statusCode } = req.body;
+    const newLog = new Log({
+      ipAddress,
+      requestUrl,
+      httpMethod,
+      statusCode,
+    });
+    await newLog.save();
+    res.status(201).json(newLog);
+  } catch (error) {
+    console.error("Error saving log:", error);
+    res.status(500).json({ message: "Error saving log" });
+  }
 });
 
 module.exports = router;
