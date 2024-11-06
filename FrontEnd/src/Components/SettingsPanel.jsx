@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function SettingsPanel() {
@@ -13,6 +13,11 @@ function SettingsPanel() {
       .then(response => alert('Settings updated'))
       .catch(error => console.error('Error updating settings:', error));
   };
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/settings')
+      .then(response => setRateLimit(response.data.rateLimit))
+      .catch(error => console.error('Error fetching settings:', error));
+  }, []);
 
   return (
     <div className="bg-[#27374D] shadow-md rounded-lg p-6 mt-10">

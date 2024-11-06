@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function RequestLogs() {
-  const [logs, setLogs] = useState([]);
+  const [logs, setLogs] = useState([
+
+  ]);
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/logs')
@@ -16,9 +18,9 @@ function RequestLogs() {
       <ul className="space-y-4">
         {logs.map((log, index) => (
           <li key={index} className="border-b border-gray-300 pb-2">
-            <p className="text-gray-400"><strong>IP:</strong> {log.ip}</p>
-            <p className="text-gray-400"><strong>Path:</strong> {log.path}</p>
-            <p className="text-gray-400"><strong>Status:</strong> {log.status}</p>
+            <p className="text-gray-400"><strong>IP:</strong> {log.ipAddress}</p>
+            <p className="text-gray-400"><strong>Path:</strong> {log.requestUrl}</p>
+            <p className="text-gray-400"><strong>Status:</strong> {log.statusCode}</p>
           </li>
         ))}
       </ul>

@@ -17,13 +17,13 @@ const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
 app.use(express.static("public"));
-
+loggerMiddleware(app);
+securityMiddleware(app); 
 
 // Middleware
 app.use(cors()); 
 app.use(express.json()); 
-loggerMiddleware(app);
-securityMiddleware(app); 
+
 
 // Routes
 app.get("/", (req, res) => {
